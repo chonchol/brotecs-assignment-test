@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = ({ sidebar, setSidebar }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,19 +67,7 @@ const Navbar = ({ sidebar, setSidebar }) => {
 
           <ul className="flex items-center flex-shrink-0 space-x-6">
             <li className="flex">
-              <button
-                className="rounded-md focus:outline-none focus:shadow-outline-purple cursor-pointer"
-                aria-label="Toggle color mode"
-              >
-                <svg
-                  className="w-5 h-5"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                </svg>
-              </button>
+              <ThemeToggle />
             </li>
 
             <li className="relative">

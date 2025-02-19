@@ -23,7 +23,7 @@ const Sidebar = ({ sidebar }) => {
       >
         <div className="py-4 text-gray-500 dark:text-gray-400">
           <NavLink className="" to="/">
-            <img src={Logo} className="ml-6 w-[40%]" alt="" />
+            <img src={Logo} className="ml-6 w-[32%]" alt="" />
           </NavLink>
 
           <ul className="mt-6">

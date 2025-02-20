@@ -1,5 +1,6 @@
 import EmployeeCard from "../components/EmployeeCard";
 const EmployeeListCard = () => {
+  const employees = JSON.parse(localStorage.getItem("employees"));
   return (
     <>
       <div className="container grid px-6 mx-auto">
@@ -7,13 +8,9 @@ const EmployeeListCard = () => {
           Employee List
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <EmployeeCard />
-          <EmployeeCard />
-          <EmployeeCard />
-          <EmployeeCard />
-          <EmployeeCard />
-          <EmployeeCard />
-          <EmployeeCard />
+          {employees.map((employee) => (
+            <EmployeeCard key={employee.id} employee={employee} />
+          ))}
         </div>
       </div>
     </>

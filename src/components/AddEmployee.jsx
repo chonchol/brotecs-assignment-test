@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddEmployee = () => {
+const AddEmployee = ({ addEmployee, updateEmployee }) => {
   const [formData, setFormData] = useState({
     id: "",
     employeeName: "",
@@ -9,12 +9,14 @@ const AddEmployee = () => {
     employeePicture: "",
     employeeAddress: "",
   });
+  const [editEmployee, setEditEmployee] = useState(null);
+
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
-    console.log(event.target.name);
+    // console.log(event.target.name);
 
-    console.log(event.target.value.length);
+    // console.log(event.target.value.length);
 
     // if (event.target.value.length < 8) {
     //   alert("enter many");
@@ -58,8 +60,23 @@ const AddEmployee = () => {
     }
 
     setErrors({});
+    // console.log(addEmployee);
 
-    localStorage.setItem("employees", JSON.stringify(formData));
+    if (editEmployee) {
+      updateEmployee(formData);
+    } else {
+      addEmployee({ ...formData, id: Date.now().toString() });
+    }
+
+    setFormData({
+      id: "",
+      employeeName: "",
+      employeeEmail: "",
+      employeePhone: "",
+      employeePicture: "",
+      employeeAddress: "",
+    });
+    setEditEmployee(null);
     console.log(formData);
   };
 
@@ -78,7 +95,7 @@ const AddEmployee = () => {
                 onChange={handleChange}
               />
               {errors.employeeName && (
-                <span class="text-xs text-red-600 dark:text-red-400">
+                <span className="text-xs text-red-600 dark:text-red-400">
                   {errors.employeeName}
                 </span>
               )}
@@ -110,7 +127,7 @@ const AddEmployee = () => {
                 onChange={handleChange}
               />
               {errors.employeePhone && (
-                <span class="text-xs text-red-600 dark:text-red-400">
+                <span className="text-xs text-red-600 dark:text-red-400">
                   {errors.employeePhone}
                 </span>
               )}
@@ -141,7 +158,7 @@ const AddEmployee = () => {
               onChange={handleChange}
             ></textarea>
           </label>
-          <label className="block mt-4 text-sm">
+          <label className="inline-block mt-4 text-sm">
             <button
               className="button-lg px-8 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple cursor-pointer"
               type="submit"

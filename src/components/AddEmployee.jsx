@@ -9,6 +9,7 @@ const AddEmployee = () => {
     employeePicture: "",
     employeeAddress: "",
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     console.log(event.target.name);
@@ -25,8 +26,39 @@ const AddEmployee = () => {
     }));
   };
 
+  const formValidation = () => {
+    const newErrors = {};
+
+    if (!formData.employeeName.trim()) {
+      newErrors.employeeName = "Employee Name is required!";
+    } else if (formData.employeeName.length < 6) {
+      newErrors.employeeName = "Name must be greater than 6 letters!";
+    } else if (!isNaN(formData.employeeName)) {
+      newErrors.employeeName = "Name must be character!";
+    }
+
+    if (!formData.employeePhone.trim()) {
+      newErrors.employeePhone = "Phone number is required!";
+    } else if (formData.employeePhone.trim().length !== 11) {
+      newErrors.employeePhone = "Phone number must be exactly 11 digit!";
+    } else if (isNaN(formData.employeePhone)) {
+      newErrors.employeePhone = "Phone number must be a number!";
+    }
+
+    return newErrors;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const formErrors = formValidation();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
+    setErrors({});
+
     localStorage.setItem("employees", JSON.stringify(formData));
     console.log(formData);
   };
@@ -45,6 +77,11 @@ const AddEmployee = () => {
                 value={formData.employeeName}
                 onChange={handleChange}
               />
+              {errors.employeeName && (
+                <span class="text-xs text-red-600 dark:text-red-400">
+                  {errors.employeeName}
+                </span>
+              )}
             </label>
 
             <label className="block text-sm w-full">
@@ -72,6 +109,11 @@ const AddEmployee = () => {
                 value={formData.employeePhone}
                 onChange={handleChange}
               />
+              {errors.employeePhone && (
+                <span class="text-xs text-red-600 dark:text-red-400">
+                  {errors.employeePhone}
+                </span>
+              )}
             </label>
 
             <label className="block text-sm w-full">

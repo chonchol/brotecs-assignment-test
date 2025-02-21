@@ -10,6 +10,7 @@ function App() {
   const [employees, setEmployees] = useState(() => {
     return JSON.parse(localStorage.getItem("employees")) || [];
   });
+  const [searchName, setSearchName] = useState("");
 
   const addEmployee = (employee) => {
     const updatedEmployees = [...employees, employee];
@@ -37,11 +38,19 @@ function App() {
         <Sidebar sidebar={sidebar} />
 
         <div className="flex flex-col flex-1 w-full">
-          <Navbar sidebar={sidebar} setSidebar={setSidebar} />
+          <Navbar
+            sidebar={sidebar}
+            setSidebar={setSidebar}
+            searchName={searchName}
+            setSearchName={setSearchName}
+          />
 
           <main className="h-full pb-16 overflow-y-auto">
             <Routes>
-              <Route path="/" element={<EmployeeListCard />} />
+              <Route
+                path="/"
+                element={<EmployeeListCard searchName={searchName} />}
+              />
               <Route
                 path="/list"
                 element={
@@ -49,6 +58,7 @@ function App() {
                     addEmployee={addEmployee}
                     updateEmployee={updateEmployee}
                     deleteEmployee={deleteEmployee}
+                    searchName={searchName}
                   />
                 }
               />

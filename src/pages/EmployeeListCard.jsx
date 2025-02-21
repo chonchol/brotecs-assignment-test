@@ -1,5 +1,5 @@
 import EmployeeCard from "../components/EmployeeCard";
-const EmployeeListCard = () => {
+const EmployeeListCard = ({ searchName }) => {
   const employees = JSON.parse(localStorage.getItem("employees"));
   return (
     <>
@@ -8,9 +8,21 @@ const EmployeeListCard = () => {
           Employee List
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {employees.map((employee) => (
-            <EmployeeCard key={employee.id} employee={employee} />
-          ))}
+          {employees.length > 0 ? (
+            employees
+              .filter((emp) =>
+                emp.employeeName
+                  .toLowerCase()
+                  .includes(searchName.toLowerCase())
+              )
+              .map((employee) => (
+                <EmployeeCard key={employee.id} employee={employee} />
+              ))
+          ) : (
+            <h1 className="py-3 text-sm text-gray-500 dark:text-gray-400">
+              No Employee Found
+            </h1>
+          )}
         </div>
       </div>
     </>

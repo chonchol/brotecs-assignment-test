@@ -1,27 +1,17 @@
 import React, { useState } from "react";
 
-const AddEmployee = ({ addEmployee, updateEmployee }) => {
-  const [formData, setFormData] = useState({
-    id: "",
-    employeeName: "",
-    employeeEmail: "",
-    employeePhone: "",
-    employeePicture: "",
-    employeeAddress: "",
-  });
-  const [editEmployee, setEditEmployee] = useState(null);
-
+const AddEmployee = ({
+  addEmployee,
+  updateEmployee,
+  formData,
+  setFormData,
+  editEmployee,
+  setEditEmployee,
+}) => {
   const [errors, setErrors] = useState({});
+  const [file, setFile] = useState(null);
 
   const handleChange = (event) => {
-    // console.log(event.target.name);
-
-    // console.log(event.target.value.length);
-
-    // if (event.target.value.length < 8) {
-    //   alert("enter many");
-    // }
-
     setFormData((formData) => ({
       ...formData,
       [event.target.name]: event.target.value,
@@ -47,7 +37,24 @@ const AddEmployee = ({ addEmployee, updateEmployee }) => {
       newErrors.employeePhone = "Phone number must be a number!";
     }
 
+    if (!file.type.startsWith("image/")) {
+      newErrors.employeePicture = "Only image files are allowed!";
+    }
+
     return newErrors;
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFile(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const base64Image = reader.result;
+        setFormData({ ...formData, employeePicture: base64Image });
+      };
+    }
   };
 
   const handleSubmit = (event) => {
@@ -77,7 +84,7 @@ const AddEmployee = ({ addEmployee, updateEmployee }) => {
       employeeAddress: "",
     });
     setEditEmployee(null);
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (
@@ -141,9 +148,15 @@ const AddEmployee = ({ addEmployee, updateEmployee }) => {
                 className="block w-full mt-1 text-sm border rounded border-gray-300 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input py-2 pl-2"
                 type="file"
                 name="employeePicture"
-                value={formData.employeePicture}
-                onChange={handleChange}
+                // value={formData.employeePicture}
+                accept="image/*"
+                onChange={handleImageChange}
               />
+              {errors.employeePicture && (
+                <span className="text-xs text-red-600 dark:text-red-400">
+                  {errors.employeePicture}
+                </span>
+              )}
             </label>
           </div>
 
@@ -163,7 +176,7 @@ const AddEmployee = ({ addEmployee, updateEmployee }) => {
               className="button-lg px-8 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple cursor-pointer"
               type="submit"
             >
-              Submit
+              {editEmployee ? "Update" : "Add"} Employee
             </button>
           </label>
         </form>

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
 import Avatar from "../assets/avatar.svg";
 
-const Navbar = ({ sidebar, setSidebar }) => {
+const Navbar = ({ sidebar, setSidebar, searchName, setSearchName }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -62,6 +62,8 @@ const Navbar = ({ sidebar, setSidebar }) => {
                 type="text"
                 placeholder="Search with employee name"
                 aria-label="Search"
+                value={searchName}
+                onChange={(e) => setSearchName(e.target.value)}
               />
             </div>
           </div>

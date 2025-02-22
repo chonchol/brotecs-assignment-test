@@ -37,7 +37,7 @@ const AddEmployee = ({
       newErrors.employeePhone = "Phone number must be a number!";
     }
 
-    if (!file.type.startsWith("image/")) {
+    if (file && !file.type.startsWith("image/")) {
       newErrors.employeePicture = "Only image files are allowed!";
     }
 
@@ -142,7 +142,7 @@ const AddEmployee = ({
 
             <label className="block text-sm w-full">
               <span className="text-gray-700 dark:text-gray-400">
-                Upload Profile Picture
+                Profile Picture (optional)
               </span>
               <input
                 className="block w-full mt-1 text-sm border rounded border-gray-300 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input py-2 pl-2"

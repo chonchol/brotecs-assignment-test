@@ -1,8 +1,17 @@
-# React + Vite
+# Employee Managemnet App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This application is provides a minimal setup for employee management app in ReactJS, tailwind css and saved data into local storage in Card and Table view.
 
-Currently, two official plugins are available:
+## Features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- CRUD operation
+- Save data into local storage and retrieve it
+- Light and Dark mode
+- Confirmation propmt when you try to delete it
+- Search with employee name
+- Sidebar, Navbar, dropdown menu etc.
+
+## Installation:
+
+- Clone this git
+- run `sh npm install ` and `sh nmp run dev `

@@ -14,4 +14,4 @@ This application is provides a minimal setup for employee management app in Reac
 ## Installation:
 
 - Clone this git
-- run `sh npm install ` and `sh nmp run dev `
+- run `npm install` and `nmp run dev`

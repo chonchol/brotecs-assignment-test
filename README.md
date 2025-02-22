@@ -9,6 +9,8 @@ This application is provides a minimal setup for employee management app in Reac
 - Light and Dark mode
 - Confirmation propmt when you try to delete it
 - Search with employee name
+- Responsive design
+- Validation (i) if name is empty and less than 6 character and check it numeric or character (ii) if phone number is numeric and it must be 11 digits (iii) profile piture must be file type
 - Sidebar, Navbar, dropdown menu etc.
 
 ## Installation:

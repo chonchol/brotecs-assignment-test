@@ -8,7 +8,7 @@ const EmployeeTable = ({
   setEditEmployee,
   searchName,
 }) => {
-  const employees = JSON.parse(localStorage.getItem("employees"));
+  const employees = JSON.parse(localStorage.getItem("employees")) || [];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
 

@@ -1,6 +1,6 @@
 import EmployeeCard from "../components/EmployeeCard";
 const EmployeeListCard = ({ searchName }) => {
-  const employees = JSON.parse(localStorage.getItem("employees"));
+  const employees = JSON.parse(localStorage.getItem("employees")) || [];
   return (
     <>
       <div className="container grid px-6 mx-auto">

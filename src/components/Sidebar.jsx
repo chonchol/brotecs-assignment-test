@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "../assets/Logo.png";
 import { NavLink, useLocation } from "react-router-dom";
 
 const Sidebar = ({ sidebar }) => {
@@ -23,7 +22,10 @@ const Sidebar = ({ sidebar }) => {
       >
         <div className="py-4 text-gray-500 dark:text-gray-400">
           <NavLink className="" to="/">
-            <img src={Logo} className="ml-6 w-[32%]" alt="" />
+            {/* <img src={Logo} className="ml-6 w-[32%]" alt="" /> */}
+            <h2 className="px-6 text-gray-800 dark:text-gray-100 text-2xl font-medium">
+              EM APP
+            </h2>
           </NavLink>
 
           <ul className="mt-6">
